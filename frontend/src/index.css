@@ -1,0 +1,199 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Navigation styles */
+  nav {
+    background-color: #333;
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  nav li {
+    margin: 0 15px;
+  }
+
+  nav a {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #ff9800;
+  }
+
+  /* Main content styles */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container {
+    margin-top: 20px;
+  }
+
+  input, button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .todo-list {
+    margin-top: 20px;
+    list-style: none;
+  }
+
+  .todo-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .todo-item.completed {
+    text-decoration: line-through;
+    background-color: #e7f7e7;
+  }
+
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+    }
+
+    nav li {
+      margin-bottom: 10px;
+    }
+
+    .container {
+      padding: 15px;
+    }
+  }
+
+
+  /* General container for the todo list */
+.todo-list-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title for the todo list section */
+.todo-list-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Styling the list of todos */
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Individual todo item */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Todo item title and description */
+.todo-item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.todo-item-description {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Completed status */
+.todo-item-status {
+  font-size: 0.9rem;
+  color: green;
+}
+
+/* Checkbox */
+.todo-item-checkbox {
+  transform: scale(1.2);
+  cursor: pointer;
+}
