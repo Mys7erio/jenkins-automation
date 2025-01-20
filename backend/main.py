@@ -25,10 +25,10 @@ app.add_middleware(
 )
 
 load_dotenv()
-MYSQL_USER = os.getenv("MYSQL_USER")
-MYSQL_PASS = os.getenv("MYSQL_PASS")
+MYSQL_USER = os.getenv("APP_USER")
+MYSQL_PASS = os.getenv("MYSQL_ROOT_PASSWORD")
 MYSQL_HOST = os.getenv("MYSQL_HOST")
-MYSQL_DB = os.getenv("MYSQL_DB")
+MYSQL_DB = os.getenv("MYSQL_DATABASE")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 
@@ -168,3 +168,18 @@ def list_todos(current_user: User = Depends(get_current_user)):
     todos = db.query(Todo).filter(Todo.owner_id == current_user.id).all()
     db.close()
     return todos
+
+
+@app.put("/todos/{todo_id}/")
+def update_todo(todo_id: int, completed: bool, current_user: User = Depends(get_current_user)):
+    db = SessionLocal()
+    db_todo = db.query(Todo).filter(Todo.id == todo_id, Todo.owner_id == current_user.id).first()
+    if db_todo is None:
+        db.close()
+        raise HTTPException(status_code=404, detail="Todo not found")
+    
+    db_todo.completed = completed
+    db.commit()
+    db.refresh(db_todo)
+    db.close()
+    return db_todo
