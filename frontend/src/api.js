@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000'; // FastAPI backend URL
+// Get the API URL from environment variables
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'; // Fallback to localhost if not defined
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -17,13 +18,13 @@ export const loginUser = async (user) => {
 export const createTodo = async (todo, token) => {
   try {
     const response = await axios.post(
-      'http://localhost:8000/todos/',
+      `${API_URL}/todos/`,  // Use dynamic API_URL
       todo,
       {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`, // Bearer token for authentication
-        }
+        },
       }
     );
     return response.data;
@@ -40,12 +41,10 @@ export const getTodos = async (token) => {
   });
 };
 
-
-
 export const updateTodoStatus = async (todoId, completed, token) => {
   try {
     const response = await axios.put(
-      `http://localhost:8000/todos/${todoId}/?completed=${completed}`, // Sending completed as a query param
+      `${API_URL}/todos/${todoId}/?completed=${completed}`, // Use dynamic API_URL
       {},  // Empty body
       {
         headers: {
