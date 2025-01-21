@@ -10,6 +10,8 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
+import time
+from sqlalchemy.exc import OperationalError
 
 
 # FastAPI app
@@ -37,6 +39,20 @@ DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASS}@{MYSQL_HOST}:3306/{MY
 engine = create_engine(DATABASE_URL)
 Base = declarative_base()
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Retry the database connection in a function
+def test_database_connection(retries: int = 5, delay: int = 5):
+    for _ in range(retries):
+        try:
+            # Try to connect to the database
+            with engine.connect() as connection:
+                return  # Connection successful, exit the function
+        except OperationalError:
+            time.sleep(delay)
+    raise OperationalError("Failed to connect after multiple retries")
+
+# Call the database connection test function
+test_database_connection()
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -168,7 +184,6 @@ def list_todos(current_user: User = Depends(get_current_user)):
     todos = db.query(Todo).filter(Todo.owner_id == current_user.id).all()
     db.close()
     return todos
-
 
 @app.put("/todos/{todo_id}/")
 def update_todo(todo_id: int, completed: bool, current_user: User = Depends(get_current_user)):
