@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  MYSQL_DATABASE: checklister
+  MYSQL_ROOT_PASSWORD: PASSWORD68
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: backend-env-db
+  name: env-db

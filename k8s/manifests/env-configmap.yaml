@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  APP_USER: root
+  SECRET_KEY: SECRET_KEY_42
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: backend-env
+  name: env
