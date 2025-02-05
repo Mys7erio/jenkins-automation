@@ -65,3 +65,5 @@ networks:
 # Custom volume to persist MySQL data
 volumes:
   checklister-db:
+    driver: local
+    name: checklister-db
