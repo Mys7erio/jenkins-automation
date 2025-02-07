@@ -19,7 +19,7 @@ services:
   # FastAPI backend, listening locally on port 8000
   # Secrets are passed via .env file. MAKE SURE TO CHANGE IT
   backend:
-    image: todo-app-backend
+    image: 271122/checklister-backend
 
     env_file:
       - .env
@@ -41,7 +41,7 @@ services:
   # React app frontend, served using Nginx
   # Exposing port 80
   frontend:
-    image: todo-app-frontend
+    image: 271122/checklister-frontend
     # build:
     #   context: ./frontend
     #   args:

@@ -21,7 +21,7 @@ spec:
         io.kompose.service: frontend
     spec:
       containers:
-        - image: todo-app-frontend
+        - image: 271122/checklister-frontend
           name: frontend
           ports:
             - containerPort: 80

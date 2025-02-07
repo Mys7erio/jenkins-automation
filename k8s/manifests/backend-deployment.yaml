@@ -44,7 +44,7 @@ spec:
                 configMapKeyRef:
                   key: SECRET_KEY
                   name: env
-          image: todo-app-backend
+          image: 271122/checklister-backend
           name: backend
           ports:
             - containerPort: 8000
