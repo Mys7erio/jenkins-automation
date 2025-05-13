@@ -1,29 +1,9 @@
 name: Checklister
 
 services:
-
-  # MySQL database handling storing all data in a persistent volume
-  database:
-    image: mysql
-
-    env_file:
-      - .env.db
-
-    networks:
-      - checklister-network
-
-    volumes:
-      - checklister-db:/var/lib/mysql
-
-
   # FastAPI backend, listening locally on port 8000
-  # Secrets are passed via .env file. MAKE SURE TO CHANGE IT
   backend:
     image: 271122/checklister-backend
-
-    env_file:
-      - .env
-      - .env.db
 
     environment:
       MYSQL_HOST: database
@@ -34,21 +14,13 @@ services:
     networks:
       - checklister-network
 
-    depends_on:
-      - database
 
-
-  # React app frontend, served using Nginx
-  # Exposing port 80
+  # React app frontend, served using Nginx. Exposing port 80
   frontend:
     image: 271122/checklister-frontend
-    # build:
-    #   context: ./frontend
-    #   args:
-    #     REACT_APP_API_URL: $REACT_APP_API_URL
 
-    # environment:
-    #   REACT_APP_API_URL: "http://backend:8000"
+    environment:
+      REACT_APP_API_URL: "http://backend:8000"
       
     networks:
       - checklister-network

@@ -27,10 +27,10 @@ app.add_middleware(
 )
 
 load_dotenv()
-MYSQL_USER = os.getenv("APP_USER")
-MYSQL_PASS = os.getenv("MYSQL_ROOT_PASSWORD")
+MYSQL_USER = os.getenv("MYSQL_USER")
+MYSQL_PASS = os.getenv("MYSQL_PASS")
 MYSQL_HOST = os.getenv("MYSQL_HOST")
-MYSQL_DB = os.getenv("MYSQL_DATABASE")
+MYSQL_DB = os.getenv("MYSQL_DB")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 
